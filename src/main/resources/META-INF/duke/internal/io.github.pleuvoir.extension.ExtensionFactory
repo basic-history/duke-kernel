@@ -1,0 +1,2 @@
+adaptive=io.github.pleuvoir.extension.factory.AdaptiveExtensionFactory
+spi=io.github.pleuvoir.extension.factory.SpiExtensionFactory
