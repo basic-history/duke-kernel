@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>io.github.pleuvoir</groupId>
+		<artifactId>duke-kernel</artifactId>
+		<version>1.0.0</version>
+	</parent>
+	<artifactId>duke-configcenter</artifactId>
+	<packaging>pom</packaging>
+	<name>${project.artifactId}</name>
+	<description>Configuration Center, Providing Dynamic and Static Configuration Services.</description>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>io.github.pleuvoir</groupId>
+				<artifactId>duke-configcenter-api</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+	<modules>
+		<module>duke-configcenter-api</module>
+		<module>duke-configcenter-local</module>
+	</modules>
+</project>

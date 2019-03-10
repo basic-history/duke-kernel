@@ -1,3 +1,0 @@
-adaptive=io.github.pleuvoir.compiler.support.AdaptiveCompiler
-jdk=io.github.pleuvoir.compiler.support.JdkCompiler
-javassist=io.github.pleuvoir.compiler.support.JavassistCompiler
