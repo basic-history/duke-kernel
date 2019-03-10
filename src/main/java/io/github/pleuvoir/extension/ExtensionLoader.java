@@ -428,7 +428,7 @@ public class ExtensionLoader<T> {
                 }
                 if (names.length == 1) {
                     cachedDefaultName = names[0];
-                    logger.debug("[" + type.getSimpleName() + "]已缓存默认实现" + type + "默认实现：" + cachedDefaultName);
+                    logger.debug("[" + type.getSimpleName() + "]发现默认实现并已缓存" + type.getSimpleName() + "=" + cachedDefaultName);
                 }
             }
         }

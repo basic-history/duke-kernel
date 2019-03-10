@@ -14,33 +14,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package io.github.pleuvoir.extension.adaptive;
 
-package io.github.pleuvoir;
-
-import java.util.regex.Pattern;
+import io.github.pleuvoir.URL;
+import io.github.pleuvoir.extension.Adaptive;
+import io.github.pleuvoir.extension.SPI;
 
 /**
- * Constants
+ * No default
  */
-public class Constants {
-
-	public static final String ANYHOST_KEY = "anyhost";
-
-	public static final String ANYHOST_VALUE = "0.0.0.0";
-
-	public static final String LOCALHOST_KEY = "localhost";
-
-	public static final String LOCALHOST_VALUE = "127.0.0.1";
+@SPI
+public interface AdaptiveExt {
 	
-	public static final String BACKUP_KEY = "backup";
+	@Adaptive({"test1","test2","test3"}) 
+    String echo(URL url, String s);
 	
-	public static final Pattern COMMA_SPLIT_PATTERN = Pattern.compile("\\s*[,]+\\s*");
-
-	public static final String INTERFACE_KEY = "interface";
-
-	public static final String VERSION_KEY = "version";
-
-	public static final String GROUP_KEY = "group";
-
-	public static final String DEFAULT_KEY_PREFIX = "default.";
+	@Adaptive
+    String echo2(URL url, String s);
+	
+	void print(URL url);
 }

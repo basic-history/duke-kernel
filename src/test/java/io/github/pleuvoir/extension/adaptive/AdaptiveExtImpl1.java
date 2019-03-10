@@ -14,24 +14,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.pleuvoir.extension;
+package io.github.pleuvoir.extension.adaptive;
 
 import io.github.pleuvoir.URL;
 
-/**
- * No default
- */
-public class Ext6Impl2 implements Ext{
+public class AdaptiveExtImpl1 implements AdaptiveExt{
 
 	@Override
 	public String echo(URL url, String s) {
-		System.out.println("Ext6Impl2 ... echo go");
-		return null;
+		System.out.println("AdaptiveExtImpl1 ... echo go");
+		return "Ext6Impl ... go";
 	}
 
 	@Override
 	public String echo2(URL url, String s) {
-		System.out.println("Ext6Impl2 ... echo2 go");
-		return "Ext6Impl2 ... go";
+		System.out.println("AdaptiveExtImpl1 ... echo2 go");
+		return null;
+	}
+
+	@Override
+	public void print(URL url) {
+		System.out.println(url);
 	}
 }

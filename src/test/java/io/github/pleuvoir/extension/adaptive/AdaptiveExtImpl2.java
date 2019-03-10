@@ -14,18 +14,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.pleuvoir.extension;
+package io.github.pleuvoir.extension.adaptive;
 
 import io.github.pleuvoir.URL;
 
-/**
- * No default
- */
-@SPI
-public interface Ext {
-	@Adaptive({"test1","test2","test3"}) 
-    String echo(URL url, String s);
+public class AdaptiveExtImpl2 implements AdaptiveExt{
+
+	@Override
+	public String echo(URL url, String s) {
+		System.out.println("AdaptiveExtImpl2 ... echo go");
+		return null;
+	}
+
+	@Override
+	public String echo2(URL url, String s) {
+		System.out.println("AdaptiveExtImpl2 ... echo2 go");
+		return null;
+	}
 	
-	@Adaptive  // 没有配置 ,则根据 url中ext6=的值获取
-    String echo2(URL url, String s);
+	@Override
+	public void print(URL url) {
+		System.out.println(url);
+	}
 }

@@ -14,33 +14,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package io.github.pleuvoir.extension.defaultext;
 
-package io.github.pleuvoir;
+import io.github.pleuvoir.URL;
+import io.github.pleuvoir.extension.SPI;
 
-import java.util.regex.Pattern;
+@SPI("defaultImpl")
+public interface DefaultExt {
 
-/**
- * Constants
- */
-public class Constants {
+	String echo(URL url, String s);
 
-	public static final String ANYHOST_KEY = "anyhost";
+	String echo2(URL url, String s);
 
-	public static final String ANYHOST_VALUE = "0.0.0.0";
-
-	public static final String LOCALHOST_KEY = "localhost";
-
-	public static final String LOCALHOST_VALUE = "127.0.0.1";
-	
-	public static final String BACKUP_KEY = "backup";
-	
-	public static final Pattern COMMA_SPLIT_PATTERN = Pattern.compile("\\s*[,]+\\s*");
-
-	public static final String INTERFACE_KEY = "interface";
-
-	public static final String VERSION_KEY = "version";
-
-	public static final String GROUP_KEY = "group";
-
-	public static final String DEFAULT_KEY_PREFIX = "default.";
 }

@@ -14,24 +14,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.pleuvoir.extension;
+package io.github.pleuvoir.extension.spiadaptive;
 
 import io.github.pleuvoir.URL;
+import io.github.pleuvoir.extension.Adaptive;
+import io.github.pleuvoir.extension.SPI;
 
-/**
- * No default
- */
-public class Ext6Impl implements Ext{
 
-	@Override
-	public String echo(URL url, String s) {
-		System.out.println("Ext6Impl ... echo go");
-		return "Ext6Impl ... go";
-	}
-
-	@Override
-	public String echo2(URL url, String s) {
-		System.out.println("Ext6Impl ... echo2 go");
-		return null;
-	}
+@SPI("impl2")
+public interface SPIAdaptiveExt {
+	
+    String echo(URL url, String s);
+	
+	@Adaptive
+    String echo2(URL url, String s);
+	
+	void print(URL url);
 }
