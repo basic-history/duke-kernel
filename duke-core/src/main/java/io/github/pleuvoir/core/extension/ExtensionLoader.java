@@ -70,7 +70,6 @@ public class ExtensionLoader<T> {
 
     private final Holder<Map<String, Class<?>>> cachedClasses = new Holder<>();
 
-    private final Map<String, Object> cachedActivates = new ConcurrentHashMap<>();
     private final ConcurrentMap<String, Holder<Object>> cachedInstances = new ConcurrentHashMap<>();
     private final Holder<Object> cachedAdaptiveInstance = new Holder<>();
     private volatile Class<?> cachedAdaptiveClass = null;
@@ -508,7 +507,6 @@ public class ExtensionLoader<T> {
             clazz.getConstructor();   
             String[] names = NAME_SEPARATOR.split(name);
             if (ArrayUtils.isNotEmpty(names)) {
-                cacheActivateClass(clazz, names[0]);	//保存直接激活缓存
                 for (String n : names) {
                     cacheName(clazz, n);
                     logger.debug("[" + type.getSimpleName() + "]实现类" + clazz.getSimpleName() + "没有被@Adaptive标记，并且不是包装类，缓存实现"+name+ "="+clazz.getName());
@@ -539,16 +537,6 @@ public class ExtensionLoader<T> {
         }
     }
 
-    /**
-     * cache Activate class which is annotated with <code>Activate</code>
-     * <p>
-     */
-	private void cacheActivateClass(Class<?> clazz, String name) {
-		Activate activate = clazz.getAnnotation(Activate.class);
-		if (activate != null) {
-			cachedActivates.put(name, activate);
-		}
-	}
 
     /**
      * cache Adaptive class which is annotated with <code>Adaptive</code>
@@ -602,7 +590,6 @@ public class ExtensionLoader<T> {
 
     private Class<?> getAdaptiveExtensionClass() {
     	// 扫描SPI，如果有实现类被 @Adaptive 标记则放入缓存
-    	//logger.debug("扫描SPI，如果有实现类被 @Adaptive 标记则放入缓存" + type.getSimpleName());
         getExtensionClasses();
         // 如果通过上面的步骤可以获取到cachedAdaptiveClass直接返回，如果不行的话，就得考虑自己进行利用动态代理创建一个了
         if (cachedAdaptiveClass != null) {
