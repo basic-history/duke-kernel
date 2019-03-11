@@ -21,7 +21,7 @@ public class TestLocalFactory {
 		
 		URL url = new URL("p", "1.2.3.4", 1010, "path").addParameter("config.key", "local").
 				addParameter(ConfigConstants.CONFIG_NAME_KEY, "test.properties");
-		DynamicConfig dynamicConfig = dynamicConfigFactory.get(url, true); 
+		DynamicConfig dynamicConfig = dynamicConfigFactory.get(url); 
 		dynamicConfig.addListener(new ConfigurationListener() {
 			@Override
 			public void trigger(ConfigChangeEvent event) {

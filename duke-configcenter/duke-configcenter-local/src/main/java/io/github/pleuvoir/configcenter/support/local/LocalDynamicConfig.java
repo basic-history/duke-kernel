@@ -32,12 +32,12 @@ public class LocalDynamicConfig implements DynamicConfig {
     private volatile boolean loaded = false;
     private volatile Map<String, String> config;
 
-    LocalDynamicConfig(String name, boolean failOnNotExist) {
+    LocalDynamicConfig(String name) {
         this.name = name;
         this.listeners = new CopyOnWriteArrayList<>();
         this.file = getFileByName(name);
 
-        if (failOnNotExist && (file == null || !file.exists())) {
+        if (file == null || !file.exists()) {
             throw new IllegalStateException("cannot find config file " + name);
         }
     }

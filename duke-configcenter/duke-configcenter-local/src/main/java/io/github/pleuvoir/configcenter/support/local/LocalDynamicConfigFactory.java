@@ -11,21 +11,20 @@ import io.github.pleuvoir.core.util.StringUtils;
 
 public class LocalDynamicConfigFactory implements DynamicConfigFactory {
 
-	@Override
-	public DynamicConfig get(URL url, boolean fastfail) {
-
-		String configName = url.getParameter(ConfigConstants.CONFIG_NAME_KEY);
-		if (fastfail && StringUtils.isBlank(configName)) {
-			throw new IllegalStateException("cannot find config file configName=null");
-		}
-		return this.doCreate(configName, fastfail);
-	}
-
 	private final ConfigWatcher watcher = new ConfigWatcher();
 	private final ConcurrentMap<String, LocalDynamicConfig> configs = new ConcurrentHashMap<>();
 
-	private DynamicConfig doCreate(final String name, final boolean fastfail) {
-		final LocalDynamicConfig prev = configs.putIfAbsent(name, new LocalDynamicConfig(name, fastfail));
+	@Override
+	public DynamicConfig get(URL url) {
+		String configName = url.getParameter(ConfigConstants.CONFIG_NAME_KEY);
+		if (StringUtils.isBlank(configName)) {
+			throw new IllegalStateException("cannot find config file configName=null");
+		}
+		return this.doCreate(configName);
+	}
+	
+	private DynamicConfig doCreate(final String name) {
+		final LocalDynamicConfig prev = configs.putIfAbsent(name, new LocalDynamicConfig(name));
 		final LocalDynamicConfig config = configs.get(name);
 		if (prev == null) {
 			watcher.addWatch(config);

@@ -8,5 +8,5 @@ import io.github.pleuvoir.core.extension.SPI;
 public interface DynamicConfigFactory {
 
 	@Adaptive({"config.key"})
-	DynamicConfig get(URL url, boolean fastfail);
+	DynamicConfig get(URL url);
 }
